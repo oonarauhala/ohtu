@@ -19,7 +19,7 @@ def main():
         )
 
         players.append(player)
-
+    players.sort(key=lambda player: player.goals + player.assists, reverse=True)
     print("Players from FIN:")
 
     for player in players:
