@@ -8,14 +8,13 @@ class Ostoskori:
         self.ostokset = []
 
     def tavaroita_korissa(self):
-        return sum(ostos.lukumaara for ostos in self.ostokset)
+        return sum(ostos.lukumaara() for ostos in self.ostokset)
 
     def hinta(self):
-        return sum(ostos.hinta for ostos in self.ostokset)
+        return sum(ostos.hinta() for ostos in self.ostokset)
 
     def lisaa_tuote(self, lisattava: Tuote):
-        # lisää tuotteen
-        pass
+        self.ostokset.append(Ostos(lisattava))
 
     def poista_tuote(self, poistettava: Tuote):
         # poistaa tuotteen
