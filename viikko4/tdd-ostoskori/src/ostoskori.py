@@ -5,23 +5,23 @@ from ostos import Ostos
 class Ostoskori:
     def __init__(self):
         pass
-        self.ostokset = []
+        self.ostokset_lista = []
 
     def tavaroita_korissa(self):
-        return sum(ostos.lukumaara() for ostos in self.ostokset)
+        return sum(ostos.lukumaara() for ostos in self.ostokset_lista)
 
     def hinta(self):
-        return sum(ostos.hinta() for ostos in self.ostokset)
+        return sum(ostos.hinta() for ostos in self.ostokset_lista)
 
     def lisaa_tuote(self, lisattava: Tuote):
         tuote_listassa = False
-        for ostos in self.ostokset:
+        for ostos in self.ostokset_lista:
             if lisattava.nimi() == ostos.tuotteen_nimi():
                 ostos.muuta_lukumaaraa(1)
                 tuote_listassa = True
                 break
         if not tuote_listassa:
-            self.ostokset.append(Ostos(lisattava))
+            self.ostokset_lista.append(Ostos(lisattava))
 
     def poista_tuote(self, poistettava: Tuote):
         # poistaa tuotteen
@@ -32,6 +32,4 @@ class Ostoskori:
         # tyhjentää ostoskorin
 
     def ostokset(self):
-        pass
-        # palauttaa listan jossa on korissa olevat ostos-oliot
-        # kukin ostos-olio siis kertoo mistä tuotteesta on kyse JA kuinka monta kappaletta kyseistä tuotetta korissa on
+        return self.ostokset_lista
