@@ -29,6 +29,8 @@ class Ostoskori:
             if poistettava.nimi() == ostos.tuotteen_nimi():
                 ostos.muuta_lukumaaraa(-1)
                 tuote_listassa = True
+                if ostos.lukumaara() <= 0:
+                    self.ostokset_lista.remove(ostos)
                 break
 
     def tyhjenna(self):
