@@ -5,6 +5,7 @@ class Komentotehdas:
             1: Summa(sovelluslogiikka),
             2: Miinus(sovelluslogiikka),
             3: Nollaus(sovelluslogiikka),
+            4: Kumoaminen(sovelluslogiikka),
         }
 
     def hae(self, komento):
@@ -35,3 +36,11 @@ class Nollaus:
 
     def suorita(self, arvo):
         self.sovelluslogiikka.nollaa()
+
+
+class Kumoaminen:
+    def __init__(self, sovelluslogiikka):
+        self.sovelluslogiikka = sovelluslogiikka
+
+    def suorita(self, arvo):
+        self.sovelluslogiikka.aseta_arvo(self.sovelluslogiikka.edellinen)
