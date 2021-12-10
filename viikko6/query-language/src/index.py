@@ -9,12 +9,16 @@ def main():
     stats = Statistics(reader)
 
     query = QueryBuilder()
-    matcher = (
-        query.plays_in("NYR")
-        .has_at_least(5, "goals")
-        .has_fewer_than(10, "goals")
+    m1 = (
+        query.plays_in("PHI")
+        .has_at_least(10, "assists")
+        .has_fewer_than(5, "goals")
         .build()
     )
+
+    m2 = query.plays_in("EDM").has_at_least(40, "points").build()
+
+    matcher = query.one_of(m1, m2).build()
 
     for player in stats.matches(matcher):
         print(player)

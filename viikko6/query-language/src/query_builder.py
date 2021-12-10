@@ -9,13 +9,15 @@ class QueryBuilder:
         return self.query
 
     def plays_in(self, team):
-        self.query = matchers.And(matchers.PlaysIn(team), self.query)
-        return QueryBuilder(self.query)
+        return QueryBuilder(matchers.And(matchers.PlaysIn(team), self.query))
 
     def has_at_least(self, value, attr):
-        self.query = matchers.And(matchers.HasAtLeast(value, attr), self.query)
-        return QueryBuilder(self.query)
+        return QueryBuilder(matchers.And(matchers.HasAtLeast(value, attr), self.query))
 
     def has_fewer_than(self, value, attr):
-        self.query = matchers.And(matchers.HasFewerThan(value, attr), self.query)
-        return QueryBuilder(self.query)
+        return QueryBuilder(
+            matchers.And(matchers.HasFewerThan(value, attr), self.query)
+        )
+
+    def one_of(self, first, second):
+        return QueryBuilder(matchers.Or(first, second))
